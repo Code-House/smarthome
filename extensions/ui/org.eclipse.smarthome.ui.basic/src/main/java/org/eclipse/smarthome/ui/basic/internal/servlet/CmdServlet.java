@@ -13,7 +13,6 @@
 package org.eclipse.smarthome.ui.basic.internal.servlet;
 
 import java.io.IOException;
-import java.util.Hashtable;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -29,9 +28,6 @@ import org.eclipse.smarthome.core.library.types.OnOffType;
 import org.eclipse.smarthome.core.types.Command;
 import org.eclipse.smarthome.core.types.TypeParser;
 import org.osgi.framework.BundleContext;
-import org.osgi.service.http.NamespaceException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * This servlet receives events from the web app and sends these as
@@ -42,8 +38,6 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class CmdServlet extends BaseServlet {
-
-    private final Logger logger = LoggerFactory.getLogger(CmdServlet.class);
 
     public static final String SERVLET_NAME = "CMD";
 
@@ -58,17 +52,7 @@ public class CmdServlet extends BaseServlet {
     }
 
     protected void activate(BundleContext bundleContext) {
-        try {
-            logger.debug("Starting up CMD servlet at " + WEBAPP_ALIAS + "/" + SERVLET_NAME);
-
-            Hashtable<String, String> props = new Hashtable<String, String>();
-            httpService.registerServlet(WEBAPP_ALIAS + "/" + SERVLET_NAME, this, props,
-                    createHttpContext(bundleContext.getBundle()));
-        } catch (NamespaceException e) {
-            logger.error("Error during servlet startup", e);
-        } catch (ServletException e) {
-            logger.error("Error during servlet startup", e);
-        }
+        super.activate(WEBAPP_ALIAS + "/" + SERVLET_NAME, bundleContext.getBundle());
     }
 
     protected void deactivate() {

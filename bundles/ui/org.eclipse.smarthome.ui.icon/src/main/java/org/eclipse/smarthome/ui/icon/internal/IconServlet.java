@@ -16,23 +16,22 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
+import org.eclipse.smarthome.io.http.core.SmartHomeServlet;
 import org.eclipse.smarthome.ui.icon.IconProvider;
 import org.eclipse.smarthome.ui.icon.IconSet.Format;
-import org.osgi.service.http.HttpContext;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.http.HttpService;
-import org.osgi.service.http.NamespaceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,7 +40,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Kai Kreuzer - Initial contribution
  */
-public class IconServlet extends HttpServlet {
+public class IconServlet extends SmartHomeServlet {
 
     private static final long serialVersionUID = 2880642275858634578L;
 
@@ -58,15 +57,7 @@ public class IconServlet extends HttpServlet {
 
     protected String defaultIconSetId = "classic";
 
-    private List<IconProvider> iconProvider = new ArrayList<>();
-
-    public void setHttpService(HttpService httpService) {
-        this.httpService = httpService;
-    }
-
-    public void unsetHttpService(HttpService httpService) {
-        this.httpService = null;
-    }
+    private final List<IconProvider> iconProvider = new ArrayList<>();
 
     public void addIconProvider(IconProvider iconProvider) {
         this.iconProvider.add(iconProvider);
@@ -76,20 +67,17 @@ public class IconServlet extends HttpServlet {
         this.iconProvider.remove(iconProvider);
     }
 
+    @Activate
     protected void activate(Map<String, Object> config) {
-        try {
-            logger.debug("Starting up icon servlet at " + SERVLET_NAME);
-
-            Hashtable<String, String> props = new Hashtable<String, String>();
-            httpService.registerServlet(SERVLET_NAME, this, props, createHttpContext());
-        } catch (NamespaceException e) {
-            logger.error("Error during servlet startup", e);
-        } catch (ServletException e) {
-            logger.error("Error during servlet startup", e);
-        }
+        super.activate(SERVLET_NAME);
         startupTime = System.currentTimeMillis();
 
         modified(config);
+    }
+
+    @Deactivate
+    protected void deactivate() {
+        super.deactivate(SERVLET_NAME);
     }
 
     protected void modified(Map<String, Object> config) {
@@ -97,16 +85,6 @@ public class IconServlet extends HttpServlet {
         if (iconSetId instanceof String) {
             defaultIconSetId = (String) iconSetId;
         }
-    }
-
-    /**
-     * Creates a {@link HttpContext}
-     *
-     * @return a {@link HttpContext}
-     */
-    protected HttpContext createHttpContext() {
-        HttpContext defaultHttpContext = httpService.createDefaultHttpContext();
-        return defaultHttpContext;
     }
 
     @Override
@@ -202,4 +180,5 @@ public class IconServlet extends HttpServlet {
         }
         return topProvider;
     }
+
 }

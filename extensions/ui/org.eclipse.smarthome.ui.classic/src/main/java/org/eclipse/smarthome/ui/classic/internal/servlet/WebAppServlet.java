@@ -15,7 +15,6 @@ package org.eclipse.smarthome.ui.classic.internal.servlet;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -42,6 +41,7 @@ import org.eclipse.smarthome.ui.classic.internal.WebAppConfig;
 import org.eclipse.smarthome.ui.classic.internal.render.PageRenderer;
 import org.eclipse.smarthome.ui.classic.render.RenderException;
 import org.osgi.framework.BundleContext;
+import org.osgi.service.http.HttpContext;
 import org.osgi.service.http.NamespaceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -86,16 +86,13 @@ public class WebAppServlet extends BaseServlet {
 
     protected void activate(Map<String, Object> configProps, BundleContext bundleContext) {
         config.applyConfig(configProps);
+        HttpContext httpContext = createHttpContext(bundleContext.getBundle());
+
+        super.activate(WEBAPP_ALIAS + "/" + SERVLET_NAME, httpContext);
         try {
-            Hashtable<String, String> props = new Hashtable<String, String>();
-            httpService.registerServlet(WEBAPP_ALIAS + "/" + SERVLET_NAME, this, props,
-                    createHttpContext(bundleContext.getBundle()));
-            httpService.registerResources(WEBAPP_ALIAS, "web", null);
-            logger.info("Started Classic UI at " + WEBAPP_ALIAS + "/" + SERVLET_NAME);
+            httpService.registerResources(WEBAPP_ALIAS, "web", httpContext);
         } catch (NamespaceException e) {
-            logger.error("Error during servlet startup", e);
-        } catch (ServletException e) {
-            logger.error("Error during servlet startup", e);
+            logger.error("Could not register static resources under {}", WEBAPP_ALIAS, e);
         }
     }
 
