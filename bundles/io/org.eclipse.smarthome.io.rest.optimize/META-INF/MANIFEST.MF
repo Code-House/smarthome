@@ -12,4 +12,6 @@ Import-Package:
  com.eclipsesource.jaxrs.publisher,
  org.eclipse.jdt.annotation;resolution:=optional,
  org.osgi.framework,
+ org.osgi.service.http,
  org.slf4j
+Service-Component: OSGI-INF/*.xml
