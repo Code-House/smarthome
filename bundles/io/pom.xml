@@ -23,6 +23,9 @@
     <module>org.eclipse.smarthome.io.monitor</module>
     <module>org.eclipse.smarthome.io.net</module>
     <module>org.eclipse.smarthome.io.net.test</module>
+    <module>org.eclipse.smarthome.io.http</module>
+    <module>org.eclipse.smarthome.io.http.core</module>
+    <module>org.eclipse.smarthome.io.http.test</module>
     <module>org.eclipse.smarthome.io.rest</module>
     <module>org.eclipse.smarthome.io.rest.test</module>
     <module>org.eclipse.smarthome.io.rest.auth</module>
