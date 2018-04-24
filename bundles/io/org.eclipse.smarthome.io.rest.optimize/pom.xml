@@ -14,4 +14,10 @@
   <packaging>eclipse-plugin</packaging>
 
   <name>Eclipse SmartHome REST JAX-RS Optimizations</name>
+
+  <properties>
+    <bundle.symbolicName>org.eclipse.smarthome.io.rest.optimize</bundle.symbolicName>
+    <bundle.namespace>org.eclipse.smarthome.io.rest.optimize</bundle.namespace>
+  </properties>
+
 </project>

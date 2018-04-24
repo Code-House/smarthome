@@ -10,7 +10,7 @@
  *
  * SPDX-License-Identifier: EPL-2.0
  */
-package org.eclipse.smarthome.io.net.http;
+package org.eclipse.smarthome.io.http;
 
 import org.osgi.framework.Bundle;
 import org.osgi.service.http.HttpContext;

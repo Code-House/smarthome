@@ -10,14 +10,14 @@
  *
  * SPDX-License-Identifier: EPL-2.0
  */
-package org.eclipse.smarthome.io.net.http.internal;
+package org.eclipse.smarthome.io.http.internal;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-import org.eclipse.smarthome.io.net.http.HttpContextFactoryService;
+import org.eclipse.smarthome.io.http.WrappingHttpContext;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -28,21 +28,29 @@ public class HttpContextFactoryServiceImplTest {
 
     private static final String RESOURCE = "resource";
 
-    private HttpContextFactoryService httpContextFactoryService;
+    private HttpContextFactoryServiceImpl httpContextFactoryService;
 
     @Mock
     private Bundle bundle;
+
+    @Mock
+    private WrappingHttpContext httpContext;
 
     @Before
     public void setup() {
         initMocks(this);
         httpContextFactoryService = new HttpContextFactoryServiceImpl();
+        httpContextFactoryService.setHttpContext(httpContext);
+
+        when(httpContext.wrap(bundle)).thenReturn(new BundleHttpContext(httpContext, bundle));
     }
 
     @Test
     public void shouldCreateHttpContext() {
         HttpContext context = httpContextFactoryService.createDefaultHttpContext(bundle);
         assertThat(context, is(notNullValue()));
+
+        verify(httpContext).wrap(bundle);
     }
 
     @Test
@@ -50,6 +58,7 @@ public class HttpContextFactoryServiceImplTest {
         HttpContext context = httpContextFactoryService.createDefaultHttpContext(bundle);
         context.getResource(RESOURCE);
 
+        verify(httpContext).wrap(bundle);
         verify(bundle).getResource(RESOURCE);
     }
 
@@ -58,6 +67,7 @@ public class HttpContextFactoryServiceImplTest {
         HttpContext context = httpContextFactoryService.createDefaultHttpContext(bundle);
         context.getResource("/" + RESOURCE);
 
+        verify(httpContext).wrap(bundle);
         verify(bundle).getResource(RESOURCE);
     }
 }
