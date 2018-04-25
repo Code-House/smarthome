@@ -56,7 +56,7 @@ public abstract class BaseSmartHomeServlet extends HttpServlet {
             logger.debug("Starting up chart servlet at " + alias);
 
             Hashtable<String, String> props = new Hashtable<String, String>();
-            httpService.registerServlet(alias, this, props, httpContext);
+            httpService.registerServlet(alias, new WrapperServlet(this), props, httpContext);
         } catch (NamespaceException e) {
             logger.error("Error during servlet registration - alias {} already in use", alias, e);
         } catch (ServletException e) {

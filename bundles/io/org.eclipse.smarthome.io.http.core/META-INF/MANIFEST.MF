@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ClassPath: .
+Bundle-Activator: org.eclipse.smarthome.io.http.core.internal.Activator
 Bundle-ManifestVersion: 2
 Bundle-Name: Eclipse SmartHome HTTP Interface Core Bundle
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
@@ -13,4 +14,6 @@ Import-Package:
  org.eclipse.smarthome.io.http,
  org.osgi.framework,
  org.osgi.service.http,
+ org.osgi.util.tracker,
  org.slf4j
+Service-Component: OSGI-INF/*.xml
