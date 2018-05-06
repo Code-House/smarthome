@@ -51,8 +51,13 @@ public class JaasAuthenticationProvider implements AuthenticationProvider {
             return null;
         }
 
-        final String name = getName(credentials);
-        final char[] password = getPassword(credentials);
+        if (!(credentials instanceof UsernamePasswordCredentials)) {
+            throw new AuthenticationException("Unsupported credentials passed to provider.");
+        }
+
+        UsernamePasswordCredentials userCredentials = (UsernamePasswordCredentials) credentials;
+        final String name = userCredentials.getUsername();
+        final char[] password = userCredentials.getPassword().toCharArray();
 
         try {
             LoginContext loginContext = new LoginContext(realmName, new CallbackHandler() {
@@ -90,20 +95,6 @@ public class JaasAuthenticationProvider implements AuthenticationProvider {
         return roles;
     }
 
-    private String getName(Credentials credentials) {
-        if (credentials instanceof UsernamePasswordCredentials) {
-            return ((UsernamePasswordCredentials) credentials).getUsername();
-        }
-        return null;
-    }
-
-    private char[] getPassword(Credentials credentials) {
-        if (credentials instanceof UsernamePasswordCredentials) {
-            return ((UsernamePasswordCredentials) credentials).getPassword().toCharArray();
-        }
-        return null;
-    }
-
     protected void activate(Map<String, Object> properties) {
         modified(properties);
     }
@@ -128,5 +119,10 @@ public class JaasAuthenticationProvider implements AuthenticationProvider {
             // value could be unset, we should reset it value
             realmName = null;
         }
+    }
+
+    @Override
+    public boolean supports(Class<? extends Credentials> type) {
+        return UsernamePasswordCredentials.class.isAssignableFrom(type);
     }
 }
