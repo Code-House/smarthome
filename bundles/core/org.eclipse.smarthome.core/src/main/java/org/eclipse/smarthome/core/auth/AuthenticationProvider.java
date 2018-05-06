@@ -30,4 +30,12 @@ public interface AuthenticationProvider {
      */
     Authentication authenticate(Credentials credentials);
 
+    /**
+     * Additional method to verify if given authentication provider can handle given type of credentials.
+     *
+     * @param type Type of credentials.
+     * @return True if credentials of given type can be used for authentication attempt with provider.
+     */
+    boolean supports(Class<? extends Credentials> type);
+
 }

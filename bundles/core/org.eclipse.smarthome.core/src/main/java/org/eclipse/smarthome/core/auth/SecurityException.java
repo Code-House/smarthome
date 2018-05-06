@@ -13,22 +13,19 @@
 package org.eclipse.smarthome.core.auth;
 
 /**
- * Base type for exceptions thrown by authentication layer.
+ * Base type for exceptions reporting security concerns.
  *
  * @author Łukasz Dywicki - Initial contribution and API
- * @author Kai Kreuzer - Added JavaDoc and serial id
  *
  */
-public class AuthenticationException extends SecurityException {
-
-    private static final long serialVersionUID = 8063538216812770858L;
+public class SecurityException extends RuntimeException {
 
     /**
      * Creates a new exception instance.
      *
      * @param message exception message
      */
-    public AuthenticationException(String message) {
+    public SecurityException(String message) {
         super(message);
     }
 
@@ -37,7 +34,7 @@ public class AuthenticationException extends SecurityException {
      *
      * @param cause exception cause
      */
-    public AuthenticationException(Throwable cause) {
+    public SecurityException(Throwable cause) {
         super(cause);
     }
 
@@ -47,7 +44,7 @@ public class AuthenticationException extends SecurityException {
      * @param message exception message
      * @param cause exception cause
      */
-    public AuthenticationException(String message, Throwable cause) {
+    public SecurityException(String message, Throwable cause) {
         super(message, cause);
     }
 
