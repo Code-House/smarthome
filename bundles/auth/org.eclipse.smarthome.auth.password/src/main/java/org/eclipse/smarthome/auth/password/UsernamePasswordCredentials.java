@@ -10,7 +10,9 @@
  *
  * SPDX-License-Identifier: EPL-2.0
  */
-package org.eclipse.smarthome.core.auth;
+package org.eclipse.smarthome.auth.password;
+
+import org.eclipse.smarthome.core.auth.Credentials;
 
 /**
  * Credentials which represent user name and password.

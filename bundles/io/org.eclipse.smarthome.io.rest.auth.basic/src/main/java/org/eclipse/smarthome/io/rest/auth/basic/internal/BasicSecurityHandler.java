@@ -18,9 +18,9 @@ import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.core.SecurityContext;
 
 import org.apache.commons.codec.binary.Base64;
+import org.eclipse.smarthome.auth.password.UsernamePasswordCredentials;
 import org.eclipse.smarthome.core.auth.AuthenticationProvider;
 import org.eclipse.smarthome.core.auth.Credentials;
-import org.eclipse.smarthome.core.auth.UsernamePasswordCredentials;
 import org.eclipse.smarthome.io.rest.auth.AbstractSecurityHandler;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
