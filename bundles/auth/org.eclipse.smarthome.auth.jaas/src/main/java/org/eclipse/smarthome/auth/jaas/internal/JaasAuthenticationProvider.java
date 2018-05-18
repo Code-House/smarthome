@@ -26,11 +26,11 @@ import javax.security.auth.callback.UnsupportedCallbackException;
 import javax.security.auth.login.LoginContext;
 import javax.security.auth.login.LoginException;
 
+import org.eclipse.smarthome.auth.password.UsernamePasswordCredentials;
 import org.eclipse.smarthome.core.auth.Authentication;
 import org.eclipse.smarthome.core.auth.AuthenticationException;
 import org.eclipse.smarthome.core.auth.AuthenticationProvider;
 import org.eclipse.smarthome.core.auth.Credentials;
-import org.eclipse.smarthome.core.auth.UsernamePasswordCredentials;
 
 /**
  * Implementation of authentication provider which is backed by JAAS realm.

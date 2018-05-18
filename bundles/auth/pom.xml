@@ -13,11 +13,14 @@
   <artifactId>auth</artifactId>
 
   <packaging>pom</packaging>
-	<name>Eclipse SmartHome Auth Components</name>
 
-	<modules>
-		<module>org.eclipse.smarthome.auth.jaas</module>
-		<module>org.eclipse.smarthome.auth.oauth2client</module>
-	</modules>
+  <name>Eclipse SmartHome Auth Components</name>
+
+  <modules>
+    <module>org.eclipse.smarthome.auth.jaas</module>
+    <module>org.eclipse.smarthome.auth.jwt</module>
+    <module>org.eclipse.smarthome.auth.password</module>
+    <module>org.eclipse.smarthome.auth.oauth2client</module>
+  </modules>
 
 </project>

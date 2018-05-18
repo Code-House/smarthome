@@ -2,16 +2,12 @@ Manifest-Version: 1.0
 Bundle-ActivationPolicy: lazy
 Bundle-License: https://www.eclipse.org/legal/epl-2.0/
 Bundle-ManifestVersion: 2
-Bundle-Name: Eclipse SmartHome JAAS Auth
+Bundle-Name: Eclipse SmartHome Password Auth
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Bundle-SymbolicName: org.eclipse.smarthome.auth.jaas
+Bundle-SymbolicName: org.eclipse.smarthome.auth.password
 Bundle-Vendor: Eclipse.org/SmartHome
 Bundle-Version: 0.10.0.qualifier
+Export-Package: org.eclipse.smarthome.auth.password
 Import-Package: 
  org.eclipse.jdt.annotation;resolution:=optional,
- org.eclipse.smarthome.auth.password,
- org.eclipse.smarthome.core.auth,
- org.osgi.service.cm,
- org.slf4j
-Service-Component: OSGI-INF/*.xml
-Automatic-Module-Name: org.eclipse.smarthome.auth.jaas
+ org.eclipse.smarthome.core.auth

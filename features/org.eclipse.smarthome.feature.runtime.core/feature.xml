@@ -39,6 +39,20 @@
          unpack="false"/>
 
    <plugin
+         id="org.eclipse.smarthome.auth.password"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+         
+   <plugin
+         id="org.eclipse.smarthome.auth.jwt"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
          id="org.eclipse.smarthome.core"
          download-size="0"
          install-size="0"
@@ -166,6 +180,27 @@
 
    <plugin
          id="org.eclipse.smarthome.io.http"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.smarthome.io.http.auth"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.smarthome.io.http.auth.basic"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.smarthome.io.http.auth.jwt"
          download-size="0"
          install-size="0"
          version="0.0.0"
