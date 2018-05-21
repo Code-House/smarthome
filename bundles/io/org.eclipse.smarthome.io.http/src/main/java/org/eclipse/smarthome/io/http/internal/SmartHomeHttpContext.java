@@ -14,12 +14,13 @@ package org.eclipse.smarthome.io.http.internal;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import org.eclipse.smarthome.core.auth.AuthenticationException;
 import org.eclipse.smarthome.io.http.Handler;
 import org.eclipse.smarthome.io.http.WrappingHttpContext;
 import org.osgi.framework.Bundle;
@@ -39,8 +40,10 @@ public class SmartHomeHttpContext implements WrappingHttpContext {
 
     @Override
     public boolean handleSecurity(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        for (Handler handler : handlers) {
-            handler.handle(request, response);
+        try {
+            new DefaultHandlerContext(new ArrayList<>(handlers)).execute(request, response);
+        } catch (AuthenticationException e) {
+            return false;
         }
         return true;
     }

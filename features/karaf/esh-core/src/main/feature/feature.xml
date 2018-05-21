@@ -124,6 +124,7 @@
     <bundle>mvn:org.eclipse.smarthome.io/org.eclipse.smarthome.io.net/${project.version}</bundle>
     <bundle>mvn:org.eclipse.smarthome.io/org.eclipse.smarthome.io.http/${project.version}</bundle>
     <bundle>mvn:org.eclipse.smarthome.io/org.eclipse.smarthome.io.http.core/${project.version}</bundle>
+    <bundle>mvn:org.eclipse.smarthome.io/org.eclipse.smarthome.io.http.auth/${project.version}</bundle>
     <bundle>mvn:org.eclipse.smarthome.io/org.eclipse.smarthome.io.rest/${project.version}</bundle>
     <bundle>mvn:org.eclipse.smarthome.io/org.eclipse.smarthome.io.rest.optimize/${project.version}</bundle>
 
@@ -137,9 +138,19 @@
   </feature>
 
   <!-- optional ESH bundles -->
+  <feature name="esh-auth-password" version="${project.version}">
+    <feature>esh-base</feature>
+    <bundle>mvn:org.eclipse.smarthome.auth/org.eclipse.smarthome.auth.password/${project.version}</bundle>
+  </feature>
+
+  <feature name="esh-auth-jwt" version="${project.version}">
+    <feature>esh-base</feature>
+    <bundle>mvn:org.eclipse.smarthome.auth/org.eclipse.smarthome.auth.jwt/${project.version}</bundle>
+  </feature>
 
   <feature name="esh-auth-jaas" version="${project.version}">
     <feature>esh-base</feature>
+    <feature>esh-auth-password</feature>
     <bundle>mvn:org.eclipse.smarthome.auth/org.eclipse.smarthome.auth.jaas/${project.version}</bundle>
   </feature>
 
@@ -248,6 +259,7 @@
 
   <feature name="esh-io-rest-auth-basic" version="${project.version}">
     <feature>esh-base</feature>
+    <feature>esh-auth-password</feature>
     <feature>esh-io-rest-auth</feature>
     <bundle>mvn:org.eclipse.smarthome.io/org.eclipse.smarthome.io.rest.auth.basic/${project.version}</bundle>
   </feature>
@@ -308,6 +320,16 @@
   <feature name="esh-io-transport-http" version="${project.version}">
     <feature>esh-base</feature>
     <requirement>esh.tp;filter:="(feature=httpclient)"</requirement>
+  </feature>
+
+  <feature name="esh-io-transport-http-auth-basic" version="${project.version}">
+    <feature>esh-auth-password</feature>
+    <bundle>mvn:org.eclipse.smarthome.io/org.eclipse.smarthome.io.http.auth.basic/${project.version}</bundle>
+  </feature>
+
+  <feature name="esh-io-transport-http-auth-jwt" version="${project.version}">
+    <feature>esh-auth-jwt</feature>
+    <bundle>mvn:org.eclipse.smarthome.io/org.eclipse.smarthome.io.http.auth.jwt/${project.version}</bundle>
   </feature>
 
   <feature name="esh-io-transport-serial" version="${project.version}">
