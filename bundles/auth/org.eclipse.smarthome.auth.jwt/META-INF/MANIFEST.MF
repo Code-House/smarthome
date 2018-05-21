@@ -11,4 +11,3 @@ Export-Package: org.eclipse.smarthome.auth.jwt
 Import-Package: 
  org.eclipse.jdt.annotation;resolution:=optional,
  org.eclipse.smarthome.core.auth
- 

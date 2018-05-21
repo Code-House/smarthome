@@ -12,13 +12,16 @@
  */
 package org.eclipse.smarthome.io.http;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
- * Constants for making handlers in proper order.
+ * Handler context represents a invocation chain.
  *
  * @author Łukasz Dywicki - Initial contribution and API.
  */
-public interface HandlerPriorities {
+public interface HandlerContext {
 
-    int AUTHENTICATION = 100;
+    void execute(HttpServletRequest request, HttpServletResponse response);
 
 }

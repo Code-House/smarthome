@@ -15,10 +15,15 @@ package org.eclipse.smarthome.io.http;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * A request handler.
+ *
+ * @author Łukasz Dywicki - Initial contribution and API.
+ */
 public interface Handler {
 
     int getPriority();
 
-    void handle(HttpServletRequest request, HttpServletResponse response);
+    void handle(HttpServletRequest request, HttpServletResponse response, HandlerContext context);
 
 }

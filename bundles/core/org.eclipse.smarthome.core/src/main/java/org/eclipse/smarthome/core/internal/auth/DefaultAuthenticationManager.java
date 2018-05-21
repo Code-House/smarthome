@@ -20,6 +20,7 @@ import org.eclipse.smarthome.core.auth.AuthenticationException;
 import org.eclipse.smarthome.core.auth.AuthenticationManager;
 import org.eclipse.smarthome.core.auth.AuthenticationProvider;
 import org.eclipse.smarthome.core.auth.Credentials;
+import org.eclipse.smarthome.core.auth.UnsupportedCredentialsException;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
@@ -41,19 +42,24 @@ public class DefaultAuthenticationManager implements AuthenticationManager {
 
     @Override
     public Authentication authenticate(Credentials credentials) {
+        boolean unmatched = true;
         for (AuthenticationProvider provider : providers) {
             if (provider.supports(credentials.getClass())) {
+                unmatched = false;
                 try {
                     Authentication authentication = provider.authenticate(credentials);
                     if (authentication != null) {
                         return authentication;
                     }
                 } catch (AuthenticationException e) {
-                    logger.info("Faiiled to authenticate credentials {} with provider {}", credentials, provider, e);
+                    logger.info("Failed to authenticate credentials {} with provider {}", credentials, provider, e);
                 }
             }
         }
 
+        if (unmatched) {
+            throw new UnsupportedCredentialsException("Unsupported credentials specified " + credentials);
+        }
         throw new AuthenticationException("Could not authenticate credentials " + credentials);
     }
 

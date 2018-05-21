@@ -14,12 +14,17 @@ package org.eclipse.smarthome.io.http.auth;
 
 import java.util.Optional;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.eclipse.smarthome.core.auth.Credentials;
 
-public interface CredentialsExtractor {
+/**
+ * Provider of credentials which works in given context and can provide credentials out of it.
+ *
+ * @author Łukasz Dywicki - inital contribution.
+ *
+ * @param <C> Context type.
+ */
+public interface CredentialsExtractor<C> {
 
-    Optional<Credentials> retrieveCredentials(HttpServletRequest request);
+    Optional<Credentials> retrieveCredentials(C requestContext);
 
 }

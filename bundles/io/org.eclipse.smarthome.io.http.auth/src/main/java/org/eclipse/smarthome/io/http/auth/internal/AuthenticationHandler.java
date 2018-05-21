@@ -12,20 +12,43 @@
  */
 package org.eclipse.smarthome.io.http.auth.internal;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.eclipse.smarthome.core.auth.Authentication;
+import org.eclipse.smarthome.core.auth.AuthenticationException;
+import org.eclipse.smarthome.core.auth.AuthenticationManager;
+import org.eclipse.smarthome.core.auth.Credentials;
 import org.eclipse.smarthome.io.http.Handler;
+import org.eclipse.smarthome.io.http.HandlerContext;
 import org.eclipse.smarthome.io.http.HandlerPriorities;
+import org.eclipse.smarthome.io.http.auth.CredentialsExtractor;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Modified;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+/**
+ * Request handler which allows to verify authentication.
+ *
+ * @author Łukasz Dywicki - initial contribution.
+ */
 @Component(configurationPid = "org.eclipse.smarthome.io.http.auth")
 public class AuthenticationHandler implements Handler {
 
     private static final String AUTHENTICATION_ENABLED = "authentication.enabled";
+    private final Logger logger = LoggerFactory.getLogger(AuthenticationManager.class);
+
+    private final List<CredentialsExtractor<HttpServletRequest>> extractors = new CopyOnWriteArrayList<>();
+
+    private AuthenticationManager authenticationManager;
     private boolean enabled = false;
 
     @Override
@@ -34,10 +57,36 @@ public class AuthenticationHandler implements Handler {
     }
 
     @Override
-    public void handle(HttpServletRequest request, HttpServletResponse response) {
-        if (this.enabled) {
+    public void handle(final HttpServletRequest request, final HttpServletResponse response,
+            final HandlerContext context) {
+        String requestUri = request.getRequestURI();
+        if (this.enabled && isSecured(requestUri) && authenticationManager != null) {
+            int found = 0, failed = 0;
+            for (CredentialsExtractor<HttpServletRequest> extractor : extractors) {
+                Optional<Credentials> extracted = extractor.retrieveCredentials(request);
+                if (extracted.isPresent()) {
+                    found++;
+                    Credentials credentials = extracted.get();
+                    try {
+                        Authentication authentication = authenticationManager.authenticate(credentials);
+                        request.setAttribute(Authentication.class.getName(), authentication);
+                        context.execute(request, response);
+                        return;
+                    } catch (AuthenticationException e) {
+                        failed++;
+                        logger.info("Failed to authenticate using credentials {}", credentials, e);
+                    }
+                }
+            }
 
+            throw new AuthenticationException("Could not authenticate request. Found " + found
+                    + " credentials in request out of which " + failed + " were invalid");
         }
+    }
+
+    private boolean isSecured(String requestUri) {
+        // TODO add decision logic so not all URIs gets secured but only these which are told to be
+        return true;
     }
 
     @Modified
@@ -47,6 +96,24 @@ public class AuthenticationHandler implements Handler {
         if (authenticationEnabled != null && authenticationEnabled instanceof String) {
             this.enabled = Boolean.valueOf((String) authenticationEnabled);
         }
+    }
+
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    public void setAuthneticationManager(AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
+    }
+
+    public void unsetAuthneticationManager(AuthenticationManager authenticationManager) {
+        this.authenticationManager = null;
+    }
+
+    @Reference(cardinality = ReferenceCardinality.MULTIPLE, target = "(context=javax.servlet.http.HttpServletRequest)")
+    public void addCredentialsExtractor(CredentialsExtractor<HttpServletRequest> extractor) {
+        this.extractors.add(extractor);
+    }
+
+    public void removeCredentialsExtractor(CredentialsExtractor<HttpServletRequest> extractor) {
+        this.extractors.remove(extractor);
     }
 
 }

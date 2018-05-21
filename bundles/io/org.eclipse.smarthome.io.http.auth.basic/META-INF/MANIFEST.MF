@@ -9,7 +9,6 @@ Bundle-Version: 0.10.0.qualifier
 Import-Package: 
  javax.servlet,
  javax.servlet.http,
- org.apache.http.auth;version="4.2.6",
  org.eclipse.jdt.annotation;resolution:=optional,
  org.eclipse.smarthome.auth.password,
  org.eclipse.smarthome.core.auth,
