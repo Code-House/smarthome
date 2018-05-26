@@ -200,6 +200,13 @@
          unpack="false"/>
 
    <plugin
+         id="org.eclipse.smarthome.io.http.auth.form"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
          id="org.eclipse.smarthome.io.http.auth.jwt"
          download-size="0"
          install-size="0"

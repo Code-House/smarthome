@@ -327,6 +327,11 @@
     <bundle>mvn:org.eclipse.smarthome.io/org.eclipse.smarthome.io.http.auth.basic/${project.version}</bundle>
   </feature>
 
+  <feature name="esh-io-transport-http-auth-form" version="${project.version}">
+    <feature>esh-auth-password</feature>
+    <bundle>mvn:org.eclipse.smarthome.io/org.eclipse.smarthome.io.http.auth.form/${project.version}</bundle>
+  </feature>
+
   <feature name="esh-io-transport-http-auth-jwt" version="${project.version}">
     <feature>esh-auth-jwt</feature>
     <bundle>mvn:org.eclipse.smarthome.io/org.eclipse.smarthome.io.http.auth.jwt/${project.version}</bundle>
@@ -500,6 +505,11 @@
     <feature>esh-model-item</feature>
     <feature>esh-model-sitemap</feature>
     <bundle>mvn:org.eclipse.smarthome.ui/org.eclipse.smarthome.ui/${project.version}</bundle>
+  </feature>
+
+  <feature name="esh-ui-login" version="${project.version}">
+    <feature>esh-base</feature>
+    <bundle>mvn:org.eclipse.smarthome.ui/org.eclipse.smarthome.ui.login/${project.version}</bundle>
   </feature>
 
   <feature name="esh-ui-icon" version="${project.version}">
