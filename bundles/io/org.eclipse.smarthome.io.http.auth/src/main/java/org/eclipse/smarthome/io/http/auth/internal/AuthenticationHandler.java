@@ -12,6 +12,8 @@
  */
 package org.eclipse.smarthome.io.http.auth.internal;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -44,12 +46,17 @@ import org.slf4j.LoggerFactory;
 public class AuthenticationHandler implements Handler {
 
     private static final String AUTHENTICATION_ENABLED = "authentication.enabled";
+    private static final String AUTHENTICATION_ENDPOINT = "authentication.loginUri";
+
     private final Logger logger = LoggerFactory.getLogger(AuthenticationManager.class);
 
     private final List<CredentialsExtractor<HttpServletRequest>> extractors = new CopyOnWriteArrayList<>();
 
     private AuthenticationManager authenticationManager;
+
+    // configuration properties
     private boolean enabled = false;
+    private String loginUri = "/login";
 
     @Override
     public int getPriority() {
@@ -60,7 +67,7 @@ public class AuthenticationHandler implements Handler {
     public void handle(final HttpServletRequest request, final HttpServletResponse response,
             final HandlerContext context) {
         String requestUri = request.getRequestURI();
-        if (this.enabled && isSecured(requestUri) && authenticationManager != null) {
+        if (this.enabled && isSecured(requestUri, request.getMethod()) && authenticationManager != null) {
             int found = 0, failed = 0;
             for (CredentialsExtractor<HttpServletRequest> extractor : extractors) {
                 Optional<Credentials> extracted = extractor.retrieveCredentials(request);
@@ -79,12 +86,27 @@ public class AuthenticationHandler implements Handler {
                 }
             }
 
+            // force client redirect
+            response.setHeader("Location", loginUri);
+            try {
+                PrintWriter writer = response.getWriter();
+                writer.println("<html><head>");
+                writer.println("<meta http-equiv=\"refresh\" content=\"0; url=" + loginUri + "\" />");
+                writer.println("</head><body>Redirecting to login page</body></html>");
+                writer.flush();
+            } catch (IOException e) {
+                logger.warn("Couldn't generate or send client response", e);
+            }
             throw new AuthenticationException("Could not authenticate request. Found " + found
                     + " credentials in request out of which " + failed + " were invalid");
         }
     }
 
-    private boolean isSecured(String requestUri) {
+    private boolean isSecured(String requestUri, String method) {
+        if (requestUri.startsWith(loginUri) && !"post".equalsIgnoreCase(method)) {
+            return false;
+        }
+
         // TODO add decision logic so not all URIs gets secured but only these which are told to be
         return true;
     }
@@ -92,9 +114,13 @@ public class AuthenticationHandler implements Handler {
     @Modified
     void update(Map<String, Object> properties) {
         Object authenticationEnabled = properties.get(AUTHENTICATION_ENABLED);
-
         if (authenticationEnabled != null && authenticationEnabled instanceof String) {
             this.enabled = Boolean.valueOf((String) authenticationEnabled);
+        }
+
+        Object loginUri = properties.get(AUTHENTICATION_ENDPOINT);
+        if (loginUri != null && loginUri instanceof String) {
+            this.loginUri = (String) loginUri;
         }
     }
 

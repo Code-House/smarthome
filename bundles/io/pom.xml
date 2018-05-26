@@ -26,6 +26,7 @@
     <module>org.eclipse.smarthome.io.http</module>
     <module>org.eclipse.smarthome.io.http.auth</module>
     <module>org.eclipse.smarthome.io.http.auth.basic</module>
+    <module>org.eclipse.smarthome.io.http.auth.form</module>
     <module>org.eclipse.smarthome.io.http.auth.jwt</module>
     <module>org.eclipse.smarthome.io.http.core</module>
     <module>org.eclipse.smarthome.io.http.test</module>
