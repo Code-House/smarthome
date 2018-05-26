@@ -15,7 +15,6 @@ package org.eclipse.smarthome.io.http.core;
 import org.eclipse.smarthome.io.http.HttpContextFactoryService;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
-import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.http.HttpContext;
 
 /**
@@ -27,7 +26,6 @@ public abstract class SmartHomeBundleServlet extends BaseSmartHomeServlet {
 
     protected HttpContextFactoryService httpContextFactoryService;
 
-    @Reference
     public void setHttpContextFactoryService(HttpContextFactoryService httpContextFactoryService) {
         this.httpContextFactoryService = httpContextFactoryService;
     }
