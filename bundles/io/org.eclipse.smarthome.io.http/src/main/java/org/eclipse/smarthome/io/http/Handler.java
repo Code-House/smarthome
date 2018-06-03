@@ -26,4 +26,6 @@ public interface Handler {
 
     void handle(HttpServletRequest request, HttpServletResponse response, HandlerContext context);
 
+    void handleError(HttpServletRequest request, HttpServletResponse response, HandlerContext context);
+
 }

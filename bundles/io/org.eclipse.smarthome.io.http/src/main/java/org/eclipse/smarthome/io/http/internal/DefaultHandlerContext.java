@@ -30,6 +30,7 @@ public class DefaultHandlerContext implements HandlerContext {
     private final List<Handler> handlers;
     private final int limit;
     private int cursor;
+    private Exception error;
 
     public DefaultHandlerContext(List<Handler> handlers) {
         this.handlers = handlers;
@@ -39,8 +40,33 @@ public class DefaultHandlerContext implements HandlerContext {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
         if (cursor < limit) {
-            handlers.get(cursor++).handle(request, response, this);
+            boolean hasError = hasError();
+
+            Handler handler = new CatchHandler(handlers.get(cursor++));
+            if (hasError) {
+                handler.handleError(request, response, this);
+            } else {
+                handler.handle(request, response, this);
+            }
+
+            if (!hasError && hasError()) {
+                // we didn't have an error and we have it now, meaning a current handler reported issue.
+                // so here reset cursor to 0 and restart execution forcing handleError method execution.
+                request.setAttribute(ERROR_ATTRIBUTE, error);
+                cursor = 0;
+                execute(request, response);
+            }
         }
+    }
+
+    @Override
+    public boolean hasError() {
+        return error != null;
+    }
+
+    @Override
+    public void error(Exception error) {
+        this.error = error;
     }
 
 }

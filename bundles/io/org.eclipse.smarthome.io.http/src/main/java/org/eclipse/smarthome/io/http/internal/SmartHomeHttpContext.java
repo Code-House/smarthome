@@ -21,12 +21,12 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.eclipse.smarthome.core.auth.AuthenticationException;
 import org.eclipse.smarthome.io.http.Handler;
 import org.eclipse.smarthome.io.http.WrappingHttpContext;
 import org.osgi.framework.Bundle;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.http.HttpContext;
 
 /**
@@ -34,18 +34,20 @@ import org.osgi.service.http.HttpContext;
  *
  * @author Łukasz Dywicki
  */
-@Component
+@Component(service = { HttpContext.class, WrappingHttpContext.class })
 public class SmartHomeHttpContext implements WrappingHttpContext {
 
     private final List<Handler> handlers = new CopyOnWriteArrayList<>();
 
     @Override
     public boolean handleSecurity(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        try {
-            new DefaultHandlerContext(new ArrayList<>(handlers)).execute(request, response);
-        } catch (AuthenticationException e) {
+        DefaultHandlerContext handlerContext = new DefaultHandlerContext(new ArrayList<>(handlers));
+        handlerContext.execute(request, response);
+
+        if (handlerContext.hasError()) {
             return false;
         }
+
         return true;
     }
 
@@ -64,7 +66,7 @@ public class SmartHomeHttpContext implements WrappingHttpContext {
         return new BundleHttpContext(this, bundle);
     }
 
-    @Reference
+    @Reference(cardinality = ReferenceCardinality.MULTIPLE)
     public void addHandler(Handler handler) {
         this.handlers.add(handler);
     }

@@ -12,6 +12,7 @@ import org.apache.commons.io.IOUtils;
 import org.eclipse.smarthome.io.http.core.SmartHomeServlet;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.http.HttpContext;
 import org.osgi.service.http.HttpService;;
@@ -26,7 +27,7 @@ public class LoginMethodsServlet extends SmartHomeServlet {
         InputStream template = getClass().getResourceAsStream("/index.html");
 
         String templateStr = IOUtils.toString(template);
-        templateStr.replace("<ul />", "<a href=\"/login/form\">Login form</a>");
+        templateStr = templateStr.replace("<ul />", "<a href=\"/login/form/index.html\">Login form</a>");
 
         PrintWriter writer = res.getWriter();
         writer.write(templateStr);
@@ -35,23 +36,23 @@ public class LoginMethodsServlet extends SmartHomeServlet {
 
     @Override
     @Reference
-    protected void setHttpContext(HttpContext httpContext) {
+    public void setHttpContext(HttpContext httpContext) {
         super.setHttpContext(httpContext);
     }
 
     @Override
-    protected void unsetHttpContext(HttpContext httpContext) {
+    public void unsetHttpContext(HttpContext httpContext) {
         super.unsetHttpContext(httpContext);
     }
 
     @Override
     @Reference
-    protected void setHttpService(HttpService httpService) {
+    public void setHttpService(HttpService httpService) {
         super.setHttpService(httpService);
     }
 
     @Override
-    protected void unsetHttpService(HttpService httpService) {
+    public void unsetHttpService(HttpService httpService) {
         super.unsetHttpService(httpService);
     }
 
@@ -60,4 +61,8 @@ public class LoginMethodsServlet extends SmartHomeServlet {
         super.activate(LOGIN_ADDRESS);
     }
 
+    @Deactivate
+    protected void deactivate() {
+        super.deactivate(LOGIN_ADDRESS);
+    }
 }
