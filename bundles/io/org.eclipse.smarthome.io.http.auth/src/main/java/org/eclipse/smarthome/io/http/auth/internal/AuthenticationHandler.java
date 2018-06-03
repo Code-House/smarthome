@@ -34,6 +34,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ReferencePolicy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -55,7 +56,7 @@ public class AuthenticationHandler implements Handler {
     private AuthenticationManager authenticationManager;
 
     // configuration properties
-    private boolean enabled = false;
+    private boolean enabled = true;
     private String loginUri = "/login";
 
     @Override
@@ -86,6 +87,16 @@ public class AuthenticationHandler implements Handler {
                 }
             }
 
+            throw new AuthenticationException("Could not authenticate request. Found " + found
+                    + " credentials in request out of which " + failed + " were invalid");
+        }
+    }
+
+    @Override
+    public void handleError(HttpServletRequest request, HttpServletResponse response, HandlerContext context) {
+        Object error = request.getAttribute(HandlerContext.ERROR_ATTRIBUTE);
+
+        if (error instanceof AuthenticationException) {
             // force client redirect
             response.setHeader("Location", loginUri);
             try {
@@ -97,8 +108,8 @@ public class AuthenticationHandler implements Handler {
             } catch (IOException e) {
                 logger.warn("Couldn't generate or send client response", e);
             }
-            throw new AuthenticationException("Could not authenticate request. Found " + found
-                    + " credentials in request out of which " + failed + " were invalid");
+        } else {
+            context.execute(request, response);
         }
     }
 
@@ -133,7 +144,7 @@ public class AuthenticationHandler implements Handler {
         this.authenticationManager = null;
     }
 
-    @Reference(cardinality = ReferenceCardinality.MULTIPLE, target = "(context=javax.servlet.http.HttpServletRequest)")
+    @Reference(cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC, target = "(context=javax.servlet.http.HttpServletRequest)")
     public void addCredentialsExtractor(CredentialsExtractor<HttpServletRequest> extractor) {
         this.extractors.add(extractor);
     }

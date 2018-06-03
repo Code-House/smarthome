@@ -22,6 +22,20 @@ import javax.servlet.http.HttpServletResponse;
  */
 public interface HandlerContext {
 
+    String ERROR_ATTRIBUTE = "handler.error";
+
     void execute(HttpServletRequest request, HttpServletResponse response);
+
+    /**
+     * Signal that an error occurred during handling of request and chain existed without calling all handlers.
+     */
+    void error(Exception error);
+
+    /**
+     * Checks if has any errors occurred while handling request.
+     *
+     * @return
+     */
+    boolean hasError();
 
 }
