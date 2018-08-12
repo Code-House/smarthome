@@ -36,7 +36,7 @@ public class BasicCredentialsExtractor implements CredentialsExtractor<HttpServl
         String authenticationHeader = request.getHeader("Authorization");
 
         if (authenticationHeader == null) {
-            return null;
+            return Optional.empty();
         }
 
         StringTokenizer tokenizer = new StringTokenizer(authenticationHeader, " ");
