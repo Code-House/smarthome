@@ -32,6 +32,7 @@ import org.osgi.service.component.annotations.Modified;
         "context=javax.servlet.http.HttpServletRequest" })
 public class FormCredentialsExtractor implements CredentialsExtractor<HttpServletRequest> {
 
+    private static final String LOGIN_ENDPOINT_PROPERTY = "loginEndpoint";
     private static final String LOGIN_ENDPOINT = "/login/form/index.html?process";
 
     private String loginEndpoint;
@@ -40,7 +41,7 @@ public class FormCredentialsExtractor implements CredentialsExtractor<HttpServle
     public Optional<Credentials> retrieveCredentials(HttpServletRequest request) {
         String requestURI = request.getRequestURI();
 
-        if (loginEndpoint.equals(requestURI) && "post".equalsIgnoreCase(request.getMethod())) {
+        if (loginEndpoint != null && loginEndpoint.equals(requestURI) && "post".equalsIgnoreCase(request.getMethod())) {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             return Optional.of(new UsernamePasswordCredentials(username, password));
@@ -51,7 +52,7 @@ public class FormCredentialsExtractor implements CredentialsExtractor<HttpServle
 
     @Modified
     void update(Map<String, Object> properties) {
-        Object loginUri = properties.get(LOGIN_ENDPOINT);
+        Object loginUri = properties.get(LOGIN_ENDPOINT_PROPERTY);
         if (loginUri != null && loginUri instanceof String) {
             this.loginEndpoint = (String) loginUri;
         }
