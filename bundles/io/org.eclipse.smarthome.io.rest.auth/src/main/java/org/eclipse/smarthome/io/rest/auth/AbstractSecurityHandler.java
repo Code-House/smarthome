@@ -27,10 +27,14 @@ import com.eclipsesource.jaxrs.provider.security.AuthorizationHandler;
 /**
  * Base type for handling authentication and authorization delegated from rest/jaxrs service layer.
  *
+ * @deprecated Since introduction of security on lower layer (servlets), this extension which is
+ *             relevant only for jaxrs and uses non standard API coming from jaxrs publisher project is not
+ *             required any more.
+ *
  * @author Łukasz Dywicki - Initial contribution and API
  * @author Kai Kreuzer - Added JavaDoc
- *
  */
+@Deprecated
 public abstract class AbstractSecurityHandler implements AuthenticationHandler, AuthorizationHandler {
 
     private AuthenticationProvider authenticationProvider;
