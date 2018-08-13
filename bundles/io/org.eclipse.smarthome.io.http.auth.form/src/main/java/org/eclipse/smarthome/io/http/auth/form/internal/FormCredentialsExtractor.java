@@ -24,7 +24,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Modified;
 
 /**
- * Extract user name and password from incoming request.
+ * Extract user name and password from incoming form request.
  *
  * @author Łukasz Dywicki - initial contribution.
  */

@@ -68,7 +68,11 @@ public class AuthenticationHandler implements Handler {
     public void handle(final HttpServletRequest request, final HttpServletResponse response,
             final HandlerContext context) {
         String requestUri = request.getRequestURI();
-        if (this.enabled && isSecured(requestUri, request.getMethod()) && authenticationManager != null) {
+        if (this.enabled && isSecured(requestUri, request.getMethod())) {
+            if (authenticationManager == null) {
+                throw new AuthenticationException("Failed to authenticate request.");
+            }
+
             int found = 0, failed = 0;
             for (CredentialsExtractor<HttpServletRequest> extractor : extractors) {
                 Optional<Credentials> extracted = extractor.retrieveCredentials(request);
@@ -135,7 +139,7 @@ public class AuthenticationHandler implements Handler {
         }
     }
 
-    @Reference(cardinality = ReferenceCardinality.OPTIONAL)
+    @Reference(cardinality = ReferenceCardinality.OPTIONAL, policy = ReferencePolicy.DYNAMIC)
     public void setAuthneticationManager(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
     }
