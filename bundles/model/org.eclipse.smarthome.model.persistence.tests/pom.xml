@@ -11,37 +11,8 @@
   <groupId>org.eclipse.smarthome.model</groupId>
   <artifactId>org.eclipse.smarthome.model.persistence.tests</artifactId>
 
-  <packaging>eclipse-test-plugin</packaging>
+  <packaging>jar</packaging>
 
   <name>Eclipse SmartHome Model Persistence Tests</name>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>${tycho-groupid}</groupId>
-        <artifactId>target-platform-configuration</artifactId>
-        <configuration>
-          <environments combine.self="override"></environments>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>${tycho-groupid}</groupId>
-        <artifactId>tycho-surefire-plugin</artifactId>
-        <configuration>
-          <dependencies>
-            <dependency>
-              <type>eclipse-plugin</type>
-              <artifactId>org.eclipse.equinox.ds</artifactId>
-              <version>0.0.0</version>
-            </dependency>
-          </dependencies>
-          <defaultStartLevel>
-            <level>4</level>
-            <autoStart>true</autoStart>
-          </defaultStartLevel>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
 
 </project>

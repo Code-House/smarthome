@@ -12,7 +12,7 @@
 
   <artifactId>org.eclipse.smarthome.io.rest.log</artifactId>
 
-  <packaging>eclipse-plugin</packaging>
+  <packaging>bundle</packaging>
 
   <name>Eclipse SmartHome Core REST UI Logging Module</name>
 

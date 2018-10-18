@@ -11,7 +11,7 @@
 
   <groupId>org.eclipse.smarthome.transform</groupId>
   <artifactId>org.eclipse.smarthome.transform.javascript</artifactId>
-  <packaging>eclipse-plugin</packaging>
+  <packaging>bundle</packaging>
 
   <name>Eclipse SmartHome Javascript Transformation Service</name>
 

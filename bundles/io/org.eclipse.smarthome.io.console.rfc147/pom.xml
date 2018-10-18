@@ -12,7 +12,7 @@
   <groupId>org.eclipse.smarthome.io</groupId>
   <artifactId>org.eclipse.smarthome.io.console.rfc147</artifactId>
 
-  <packaging>eclipse-plugin</packaging>
+  <packaging>bundle</packaging>
 
   <name>Eclipse SmartHome Console for OSGi Console RFC 147</name>
 

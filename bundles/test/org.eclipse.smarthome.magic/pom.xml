@@ -11,8 +11,24 @@
 
   <artifactId>org.eclipse.smarthome.magic</artifactId>
   <version>0.10.0-SNAPSHOT</version>
-  <packaging>eclipse-plugin</packaging>
+  <packaging>bundle</packaging>
 
   <name>Eclipse SmartHome Magic Bundle</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse.smarthome.core</groupId>
+      <artifactId>org.eclipse.smarthome.core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.smarthome.core</groupId>
+      <artifactId>org.eclipse.smarthome.core.binding.xml</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-all</artifactId>
+    </dependency>
+  </dependencies>
 
 </project>

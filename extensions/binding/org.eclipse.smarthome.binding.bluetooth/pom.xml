@@ -10,7 +10,7 @@
   </parent>
 
   <artifactId>org.eclipse.smarthome.binding.bluetooth</artifactId>
-  <packaging>eclipse-plugin</packaging>
+  <packaging>bundle</packaging>
 
   <name>Eclipse SmartHome Bluetooth Binding</name>
 

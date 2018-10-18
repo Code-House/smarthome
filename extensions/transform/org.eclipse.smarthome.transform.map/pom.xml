@@ -11,7 +11,7 @@
 
   <groupId>org.eclipse.smarthome.transform</groupId>
   <artifactId>org.eclipse.smarthome.transform.map</artifactId>
-  <packaging>eclipse-plugin</packaging>
+  <packaging>bundle</packaging>
 
   <name>Eclipse SmartHome Map Transformation Service</name>
 

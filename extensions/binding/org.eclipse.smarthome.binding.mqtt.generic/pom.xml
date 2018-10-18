@@ -13,6 +13,6 @@
   <artifactId>org.eclipse.smarthome.binding.mqtt.generic</artifactId>
 
   <name>Eclipse SmartHome MQTT Thing Binding</name>
-  <packaging>eclipse-plugin</packaging>
+  <packaging>bundle</packaging>
 
 </project>

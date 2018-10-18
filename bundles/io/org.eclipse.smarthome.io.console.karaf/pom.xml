@@ -12,7 +12,7 @@
   <groupId>org.eclipse.smarthome.io</groupId>
   <artifactId>org.eclipse.smarthome.io.console.karaf</artifactId>
 
-  <packaging>eclipse-plugin</packaging>
+  <packaging>bundle</packaging>
 
   <name>Eclipse SmartHome Console for OSGi runtime Karaf</name>
 

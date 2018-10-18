@@ -11,7 +11,7 @@
   <groupId>org.eclipse.smarthome.io</groupId>
   <artifactId>org.eclipse.smarthome.io.http</artifactId>
 
-  <packaging>eclipse-plugin</packaging>
+  <packaging>bundle</packaging>
 
   <name>Eclipse SmartHome HTTP Interface</name>
 

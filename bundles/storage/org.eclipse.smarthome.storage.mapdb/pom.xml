@@ -11,7 +11,7 @@
   <groupId>org.eclipse.smarthome.storage</groupId>
   <artifactId>org.eclipse.smarthome.storage.mapdb</artifactId>
 
-  <packaging>eclipse-plugin</packaging>
+  <packaging>bundle</packaging>
 
   <name>Eclipse SmartHome MapDB Storage</name>
 

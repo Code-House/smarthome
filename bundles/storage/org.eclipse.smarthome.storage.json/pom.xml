@@ -11,7 +11,7 @@
   <groupId>org.eclipse.smarthome.storage</groupId>
   <artifactId>org.eclipse.smarthome.storage.json</artifactId>
 
-  <packaging>eclipse-plugin</packaging>
+  <packaging>bundle</packaging>
 
   <name>Eclipse SmartHome JSON Storage</name>
 

@@ -11,8 +11,15 @@
 
   <groupId>org.eclipse.smarthome.core</groupId>
   <artifactId>org.eclipse.smarthome.core.binding.xml</artifactId>
-  <packaging>eclipse-plugin</packaging>
+  <packaging>bundle</packaging>
 
   <name>Eclipse SmartHome Core Binding XML</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse.smarthome.config</groupId>
+      <artifactId>org.eclipse.smarthome.config.xml</artifactId>
+    </dependency>
+  </dependencies>
 
 </project>

@@ -11,7 +11,7 @@
   <groupId>org.eclipse.smarthome.model</groupId>
   <artifactId>org.eclipse.smarthome.model.lazygen</artifactId>
 
-  <packaging>eclipse-plugin</packaging>
+  <packaging>bundle</packaging>
 
   <name>Eclipse SmartHome Model Lazy Generation</name>
 

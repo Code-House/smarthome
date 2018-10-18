@@ -11,7 +11,7 @@
   <groupId>org.eclipse.smarthome.persistence</groupId>
   <artifactId>org.eclipse.smarthome.persistence.mapdb</artifactId>
 
-  <packaging>eclipse-plugin</packaging>
+  <packaging>bundle</packaging>
 
   <name>Eclipse SmartHome MapDB Persistence</name>
 

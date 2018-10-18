@@ -11,24 +11,8 @@
   <groupId>org.eclipse.smarthome.transform</groupId>
   <artifactId>org.eclipse.smarthome.transform.map.test</artifactId>
 
-  <packaging>eclipse-test-plugin</packaging>
+  <packaging>jar</packaging>
 
   <name>Eclipse SmartHome Map Transformation Service Tests</name>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>${tycho-groupid}</groupId>
-        <artifactId>target-platform-configuration</artifactId>
-        <configuration>
-          <environments combine.self="override"></environments>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>${tycho-groupid}</groupId>
-        <artifactId>tycho-surefire-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </build>
 
 </project>

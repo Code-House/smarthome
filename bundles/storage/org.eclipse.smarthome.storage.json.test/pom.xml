@@ -11,42 +11,9 @@
   <groupId>org.eclipse.smarthome.storage</groupId>
   <artifactId>org.eclipse.smarthome.storage.json.test</artifactId>
 
-  <packaging>eclipse-test-plugin</packaging>
+  <packaging>jar</packaging>
 
   <name>Eclipse SmartHome Storage JSON Tests</name>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>${tycho-groupid}</groupId>
-        <artifactId>target-platform-configuration</artifactId>
-        <configuration>
-          <environments combine.self="override"></environments>
-          <dependency-resolution>
-            <extraRequirements>
-              <requirement>
-                <type>eclipse-plugin</type>
-                <id>org.eclipse.equinox.ds</id>
-                <versionRange>0.0.0</versionRange>
-              </requirement>
-            </extraRequirements>
-          </dependency-resolution>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>${tycho-groupid}</groupId>
-        <artifactId>tycho-surefire-plugin</artifactId>
-        <configuration>
-          <bundleStartLevel>
-            <bundle>
-              <id>org.eclipse.equinox.ds</id>
-              <level>1</level>
-              <autoStart>true</autoStart>
-            </bundle>
-          </bundleStartLevel>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
 
 </project>

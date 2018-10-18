@@ -11,25 +11,9 @@
   <groupId>org.eclipse.smarthome.ui</groupId>
   <artifactId>org.eclipse.smarthome.ui.test</artifactId>
 
-  <packaging>eclipse-test-plugin</packaging>
+  <packaging>jar</packaging>
 
   <name>Eclipse SmartHome UI Tests</name>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>${tycho-groupid}</groupId>
-        <artifactId>target-platform-configuration</artifactId>
-        <configuration>
-          <environments combine.self="override"></environments>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>${tycho-groupid}</groupId>
-        <artifactId>tycho-surefire-plugin</artifactId>
-        <configuration></configuration>
-      </plugin>
-    </plugins>
-  </build>
 
 </project>

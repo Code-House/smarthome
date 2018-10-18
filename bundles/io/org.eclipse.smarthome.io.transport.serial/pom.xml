@@ -10,7 +10,7 @@
 
   <groupId>org.eclipse.smarthome.io</groupId>
   <artifactId>org.eclipse.smarthome.io.transport.serial</artifactId>
-  <packaging>eclipse-plugin</packaging>
+  <packaging>bundle</packaging>
 
   <name>Eclipse SmartHome Serial Transport</name>
 

@@ -11,7 +11,7 @@
   <groupId>org.eclipse.smarthome.core</groupId>
   <artifactId>org.eclipse.smarthome.core.extension.sample</artifactId>
 
-  <packaging>eclipse-plugin</packaging>
+  <packaging>bundle</packaging>
 
   <name>Eclipse SmartHome Sample Extension Service</name>
 </project>

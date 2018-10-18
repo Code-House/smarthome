@@ -11,7 +11,7 @@
   <groupId>org.eclipse.smarthome.voice</groupId>
   <artifactId>org.eclipse.smarthome.voice.mactts.test</artifactId>
 
-  <packaging>eclipse-test-plugin</packaging>
+  <packaging>jar</packaging>
 
   <name>Eclipse SmartHome macOS Text-to-Speech Tests</name>
 
@@ -21,13 +21,6 @@
         <groupId>org.vafer</groupId>
         <artifactId>jdeb</artifactId>
         <version>1.5</version>
-      </plugin>
-      <plugin>
-        <groupId>${tycho-groupid}</groupId>
-        <artifactId>tycho-surefire-plugin</artifactId>
-        <configuration>
-          <argLine>-Djava.library.path=${project.basedir}/lib</argLine>
-        </configuration>
       </plugin>
     </plugins>
   </build>

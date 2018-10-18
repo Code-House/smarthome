@@ -11,7 +11,7 @@
   <groupId>org.eclipse.smarthome.ui</groupId>
   <artifactId>org.eclipse.smarthome.ui.icon</artifactId>
 
-  <packaging>eclipse-plugin</packaging>
+  <packaging>bundle</packaging>
 
   <name>Eclipse SmartHome UI Icon Support</name>
 

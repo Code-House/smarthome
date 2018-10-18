@@ -37,18 +37,6 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>${tycho-groupid}</groupId>
-        <artifactId>tycho-source-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>plugin-source</id>
-            <goals>
-              <goal>plugin-source</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-scr-plugin</artifactId>
         <executions>

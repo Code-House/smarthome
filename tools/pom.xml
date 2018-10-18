@@ -19,21 +19,5 @@
     <module>archetype</module>
   </modules>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>${tycho-groupid}</groupId>
-        <artifactId>tycho-source-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>plugin-source</id>
-            <goals>
-              <goal>plugin-source</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
 
 </project>

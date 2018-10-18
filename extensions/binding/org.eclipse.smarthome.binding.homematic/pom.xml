@@ -10,7 +10,7 @@
   </parent>
 
   <artifactId>org.eclipse.smarthome.binding.homematic</artifactId>
-  <packaging>eclipse-plugin</packaging>
+  <packaging>bundle</packaging>
 
   <name>Eclipse SmartHome Homematic Binding</name>
 

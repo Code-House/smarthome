@@ -11,7 +11,7 @@
   <groupId>org.eclipse.smarthome.config</groupId>
   <artifactId>org.eclipse.smarthome.config.discovery.usbserial.linuxsysfs</artifactId>
 
-  <packaging>eclipse-plugin</packaging>
+  <packaging>bundle</packaging>
 
   <name>Eclipse SmartHome Configuration USB-Serial Discovery for Linux using sysfs scanning</name>
 

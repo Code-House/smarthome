@@ -19,6 +19,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Deque;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +29,7 @@ import org.eclipse.smarthome.io.http.Handler;
 import org.eclipse.smarthome.io.http.WrappingHttpContext;
 import org.osgi.framework.Bundle;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ReferencePolicy;
@@ -42,16 +44,24 @@ import org.osgi.service.http.HttpContext;
  *
  * @author Łukasz Dywicki - Initial contribution
  */
-@Component(service = { HttpContext.class, WrappingHttpContext.class })
+@Component(service = { HttpContext.class, WrappingHttpContext.class }, configurationPid = "org.eclipse.smarthome.auth")
 public class SmartHomeHttpContext implements WrappingHttpContext {
+
+    private static final String AUTHENTICATION_ENABLED = "authentication.enabled";
 
     /**
      * Sorted list of handlers, where handler with priority 0 is first.
      */
     private final List<Handler> handlers = new CopyOnWriteArrayList<>();
 
+    /**
+     * Access control switch.
+     */
+    private boolean authenticationEnabled = false;
+
     @Override
     public boolean handleSecurity(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // if (authenticationEnabled) {
         Deque<Handler> queue = new ArrayDeque<>(handlers);
         DefaultHandlerContext handlerContext = new DefaultHandlerContext(queue);
         handlerContext.execute(request, response);
@@ -59,6 +69,7 @@ public class SmartHomeHttpContext implements WrappingHttpContext {
         if (handlerContext.hasError()) {
             return false;
         }
+        // }
 
         return true;
     }
@@ -86,6 +97,14 @@ public class SmartHomeHttpContext implements WrappingHttpContext {
 
     public void removeHandler(Handler handler) {
         this.handlers.remove(handler);
+    }
+
+    @Modified
+    void update(Map<String, Object> properties) {
+        Object authenticationEnabled = properties.get(AUTHENTICATION_ENABLED);
+        if (authenticationEnabled != null && authenticationEnabled instanceof String) {
+            this.authenticationEnabled = Boolean.valueOf((String) authenticationEnabled);
+        }
     }
 
 }

@@ -11,7 +11,7 @@
   <groupId>org.eclipse.smarthome.automation</groupId>
   <artifactId>org.eclipse.smarthome.automation.sample.extension.java</artifactId>
 
-  <packaging>eclipse-plugin</packaging>
+  <packaging>bundle</packaging>
 
   <name>Eclipse SmartHome Automation Sample Extension Java</name>
 

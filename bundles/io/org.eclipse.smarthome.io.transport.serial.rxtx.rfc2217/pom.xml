@@ -10,7 +10,7 @@
 
   <groupId>org.eclipse.smarthome.io</groupId>
   <artifactId>org.eclipse.smarthome.io.transport.serial.rxtx.rfc2217</artifactId>
-  <packaging>eclipse-plugin</packaging>
+  <packaging>bundle</packaging>
 
   <name>Eclipse SmartHome Serial Transport for RFC2217</name>
 

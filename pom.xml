@@ -32,9 +32,7 @@
     <module>bundles</module>
     <module>extensions</module>
     <module>features</module>
-    <module>products</module>
     <module>tools</module>
-    <module>targetplatform</module>
     <module>distribution</module>
   </modules>
 
@@ -57,14 +55,233 @@
     <maven.compiler.target>${esh.java.version}</maven.compiler.target>
     <maven.compiler.compilerVersion>${esh.java.version}</maven.compiler.compilerVersion>
     <tycho-version>1.2.0</tycho-version>
-    <tycho-groupid>org.eclipse.tycho</tycho-groupid>
     <xtext-version>2.14.0</xtext-version>
     <karaf.version>4.2.1</karaf.version>
     <ds-annotations.version>1.2.10</ds-annotations.version>
     <jdt-annotations.version>2.1.0</jdt-annotations.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <sat.version>0.5.0</sat.version>
+    <osgi.version>6.0.0</osgi.version>
+    <slf4j-api.version>1.7.25</slf4j-api.version>
+    <javax-measure.version>1.0</javax-measure.version>
+    <uom-se.version>1.0.9</uom-se.version>
+    <mockito.version>1.10.19</mockito.version>
+    <junit.version>4.12</junit.version>
+    <hamcrest.version>1.3</hamcrest.version>
   </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse.jdt</groupId>
+      <artifactId>org.eclipse.jdt.annotation</artifactId>
+      <version>2.2.100</version>
+      <optional>true</optional>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.eclipse.smarthome.core</groupId>
+        <artifactId>org.eclipse.smarthome.core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.smarthome.core</groupId>
+        <artifactId>org.eclipse.smarthome.core.audio</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.smarthome.core</groupId>
+        <artifactId>org.eclipse.smarthome.core.autoupdate</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.smarthome.core</groupId>
+        <artifactId>org.eclipse.smarthome.core.binding.xml</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.smarthome.core</groupId>
+        <artifactId>org.eclipse.smarthome.core.extension.sample</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.smarthome.core</groupId>
+        <artifactId>org.eclipse.smarthome.core.id</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.smarthome.core</groupId>
+        <artifactId>org.eclipse.smarthome.core.persistence</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.smarthome.core</groupId>
+        <artifactId>org.eclipse.smarthome.core.scheduler</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.smarthome.core</groupId>
+        <artifactId>org.eclipse.smarthome.core.thing</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.smarthome.core</groupId>
+        <artifactId>org.eclipse.smarthome.core.thing.xml</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.smarthome.core</groupId>
+        <artifactId>org.eclipse.smarthome.core.transform</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.smarthome.core</groupId>
+        <artifactId>org.eclipse.smarthome.core.voice</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.eclipse.smarthome.config</groupId>
+        <artifactId>org.eclipse.smarthome.config.core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.smarthome.config</groupId>
+        <artifactId>org.eclipse.smarthome.config.discovery</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.smarthome.config</groupId>
+        <artifactId>org.eclipse.smarthome.config.discovery.mdns</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.smarthome.config</groupId>
+        <artifactId>org.eclipse.smarthome.config.discovery.upnp</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.smarthome.config</groupId>
+        <artifactId>org.eclipse.smarthome.config.discovery.usbserial</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.smarthome.config</groupId>
+        <artifactId>org.eclipse.smarthome.config.discovery.usbserial.linuxsysfs</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.smarthome.config</groupId>
+        <artifactId>org.eclipse.smarthome.config.dispatch</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.smarthome.config</groupId>
+        <artifactId>org.eclipse.smarthome.config.serial</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.smarthome.config</groupId>
+        <artifactId>org.eclipse.smarthome.config.xml</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.core</artifactId>
+        <version>${osgi.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>osgi.cmpn</artifactId>
+        <version>${osgi.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j-api.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.measure</groupId>
+        <artifactId>unit-api</artifactId>
+        <version>${javax-measure.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>tec.uom</groupId>
+        <artifactId>uom-se</artifactId>
+        <version>${uom-se.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-lang</groupId>
+        <artifactId>commons-lang</artifactId>
+        <version>2.6</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>3.4</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-net</groupId>
+        <artifactId>commons-net</artifactId>
+        <version>3.2</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-exec</artifactId>
+        <version>1.1</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-collections</groupId>
+        <artifactId>commons-collections</artifactId>
+        <version>3.2.1</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-codec</groupId>
+        <artifactId>commons-codec</artifactId>
+        <version>1.6</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>2.2</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.google.code.gson</groupId>
+        <artifactId>gson</artifactId>
+        <version>2.7</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>18.0</version>
+      </dependency>
+
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-all</artifactId>
+        <version>${mockito.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.hamcrest</groupId>
+        <artifactId>hamcrest-all</artifactId>
+        <version>${hamcrest.version}</version>
+        <scope>test</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <repositories>
     <repository>
@@ -113,83 +330,6 @@
           <version>2.8.2</version>
         </plugin>
         <plugin>
-          <groupId>${tycho-groupid}</groupId>
-          <artifactId>target-platform-configuration</artifactId>
-          <version>${tycho-version}</version>
-          <configuration>
-            <!--
-            <resolver>p2</resolver>
-            <ignoreTychoRepositories>true</ignoreTychoRepositories>
-            -->
-            <pomDependencies>consider</pomDependencies>
-            <target>
-              <artifact>
-                <groupId>org.eclipse.smarthome</groupId>
-                <artifactId>targetplatform</artifactId>
-                <version>${project.version}</version>
-                <classifier>smarthome</classifier>
-              </artifact>
-            </target>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>${tycho-groupid}</groupId>
-          <artifactId>tycho-compiler-plugin</artifactId>
-          <version>${tycho-version}</version>
-          <configuration>
-            <useProjectSettings>false</useProjectSettings>
-            <extraClasspathElements>
-              <extraClasspathElement>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>org.apache.felix.scr.ds-annotations</artifactId>
-                <version>${ds-annotations.version}</version>
-              </extraClasspathElement>
-              <extraClasspathElement>
-                <groupId>org.eclipse.jdt</groupId>
-                <artifactId>org.eclipse.jdt.annotation</artifactId>
-                <version>${jdt-annotations.version}</version>
-              </extraClasspathElement>
-            </extraClasspathElements>
-            <compilerArgs>
-              <arg>-err:+nullAnnot(org.eclipse.jdt.annotation.Nullable|org.eclipse.jdt.annotation.NonNull|org.eclipse.jdt.annotation.NonNullByDefault),+inheritNullAnnot,-nullUncheckedConversion</arg>
-              <arg>-warn:+null,+inheritNullAnnot,+nullAnnotConflict,-nullUncheckedConversion,+nullAnnotRedundant,+nullDereference</arg>
-            </compilerArgs>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>${tycho-groupid}</groupId>
-          <artifactId>tycho-maven-plugin</artifactId>
-          <version>${tycho-version}</version>
-        </plugin>
-        <plugin>
-          <groupId>${tycho-groupid}</groupId>
-          <artifactId>tycho-source-plugin</artifactId>
-          <version>${tycho-version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.eclipse.tycho.extras</groupId>
-          <artifactId>tycho-source-feature-plugin</artifactId>
-          <version>${tycho-version}</version>
-        </plugin>
-        <plugin>
-          <groupId>${tycho-groupid}</groupId>
-          <artifactId>tycho-surefire-plugin</artifactId>
-          <version>${tycho-version}</version>
-          <configuration>
-            <failIfNoTests>false</failIfNoTests>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>${tycho-groupid}</groupId>
-          <artifactId>tycho-p2-plugin</artifactId>
-          <version>${tycho-version}</version>
-        </plugin>
-        <plugin>
-          <groupId>${tycho-groupid}</groupId>
-          <artifactId>tycho-versions-plugin</artifactId>
-          <version>${tycho-version}</version>
-        </plugin>
-        <plugin>
           <groupId>org.apache.felix</groupId>
           <artifactId>maven-scr-plugin</artifactId>
           <version>1.24.0</version>
@@ -208,7 +348,7 @@
         <plugin>
           <groupId>org.apache.felix</groupId>
           <artifactId>maven-bundle-plugin</artifactId>
-          <version>3.0.1</version>
+          <version>4.0.0</version>
           <extensions>true</extensions>
           <configuration>
             <supportedProjectTypes>
@@ -221,6 +361,21 @@
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.8.0</version>
+          <configuration>
+            <compilerId>eclipse</compilerId>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>org.codehaus.plexus</groupId>
+              <artifactId>plexus-compiler-eclipse</artifactId>
+              <version>2.8.5</version>
+            </dependency>
+            <dependency>
+              <groupId>org.eclipse.jdt</groupId>
+              <artifactId>ecj</artifactId>
+              <version>3.15.0</version>
+            </dependency>
+          </dependencies>
         </plugin>
         <plugin>
           <groupId>com.mycila</groupId>
@@ -327,6 +482,24 @@
     </pluginManagement>
     <plugins>
       <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <configuration>
+          <instructions>
+            <Import-Package>
+              !${project.artifactId}.*,
+              *
+            </Import-Package>
+            <Export-Package>
+              ${project.artifactId}.*
+            </Export-Package>
+            <Private-Package>
+              ${project.artifactId}.internal.*
+            </Private-Package>
+          </instructions>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.commonjava.maven.plugins</groupId>
         <artifactId>directory-maven-plugin</artifactId>
         <version>0.2</version>
@@ -342,44 +515,6 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <groupId>${tycho-groupid}</groupId>
-        <artifactId>tycho-maven-plugin</artifactId>
-        <extensions>true</extensions>
-      </plugin>
-      <plugin>
-        <groupId>${tycho-groupid}</groupId>
-        <artifactId>target-platform-configuration</artifactId>
-        <configuration>
-          <environments>
-            <environment>
-              <os>linux</os>
-              <ws>gtk</ws>
-              <arch>x86</arch>
-            </environment>
-            <environment>
-              <os>linux</os>
-              <ws>gtk</ws>
-              <arch>x86_64</arch>
-            </environment>
-            <environment>
-              <os>win32</os>
-              <ws>win32</ws>
-              <arch>x86</arch>
-            </environment>
-            <environment>
-              <os>win32</os>
-              <ws>win32</ws>
-              <arch>x86_64</arch>
-            </environment>
-            <environment>
-              <os>macosx</os>
-              <ws>cocoa</ws>
-              <arch>x86_64</arch>
-            </environment>
-          </environments>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

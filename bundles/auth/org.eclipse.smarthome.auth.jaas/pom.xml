@@ -11,7 +11,7 @@
   <groupId>org.eclipse.smarthome.auth</groupId>
   <artifactId>org.eclipse.smarthome.auth.jaas</artifactId>
 
-  <packaging>eclipse-plugin</packaging>
+  <packaging>bundle</packaging>
 
   <name>Eclipse SmartHome JAAS Authentication</name>
 
