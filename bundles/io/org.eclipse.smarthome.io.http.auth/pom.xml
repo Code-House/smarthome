@@ -15,4 +15,11 @@
 
   <name>Eclipse SmartHome HTTP Interface Authentication</name>
 
+  <dependencies>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>osgi.cmpn</artifactId>
+    </dependency>
+  </dependencies>
+
 </project>

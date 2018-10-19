@@ -15,4 +15,11 @@
 
   <name>Eclipse SmartHome JAAS Authentication</name>
 
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse.smarthome.core</groupId>
+      <artifactId>org.eclipse.smarthome.core</artifactId>
+    </dependency>
+  </dependencies>
+
 </project>

@@ -15,4 +15,11 @@
 
   <name>Eclipse SmartHome HTTP Interface Basic Authentication</name>
 
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse.smarthome.io</groupId>
+      <artifactId>org.eclipse.smarthome.io.http</artifactId>
+    </dependency>
+  </dependencies>
+
 </project>

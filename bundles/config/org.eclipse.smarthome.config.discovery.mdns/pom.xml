@@ -15,4 +15,19 @@
 
   <name>Eclipse SmartHome Configuration mDNS Discovery</name>
 
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse.smarthome.config</groupId>
+      <artifactId>org.eclipse.smarthome.config.discovery</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.smarthome.io</groupId>
+      <artifactId>org.eclipse.smarthome.io.transport.mdns</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jmdns</groupId>
+      <artifactId>jmdns</artifactId>
+    </dependency>
+  </dependencies>
+
 </project>

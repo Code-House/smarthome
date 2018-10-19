@@ -15,4 +15,15 @@
 
   <name>Eclipse SmartHome Configuration UPnP Discovery</name>
 
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse.smarthome.config</groupId>
+      <artifactId>org.eclipse.smarthome.config.discovery</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jupnp</groupId>
+      <artifactId>org.jupnp</artifactId>
+    </dependency>
+  </dependencies>
+
 </project>

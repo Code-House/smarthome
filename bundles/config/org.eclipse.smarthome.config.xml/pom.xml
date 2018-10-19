@@ -20,6 +20,11 @@
       <groupId>org.eclipse.smarthome.config</groupId>
       <artifactId>org.eclipse.smarthome.config.core</artifactId>
     </dependency>
+    <dependency>
+      <groupId>com.thoughtworks.xstream</groupId>
+      <artifactId>xstream</artifactId>
+    </dependency>
+
   </dependencies>
 
 </project>

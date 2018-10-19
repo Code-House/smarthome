@@ -14,4 +14,16 @@
   <packaging>bundle</packaging>
 
   <name>Eclipse SmartHome Sample Extension Service</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse.smarthome.core</groupId>
+      <artifactId>org.eclipse.smarthome.core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+    </dependency>
+  </dependencies>
+
 </project>

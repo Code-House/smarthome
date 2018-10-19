@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="org.eclipse.smarthome.core.semantics.internal.SemanticsMetadataProvider" activate="activate">
+    <service servicefactory="false">
+        <provide interface="org.eclipse.smarthome.core.items.MetadataProvider"/>
+        <provide interface="org.eclipse.smarthome.core.common.registry.RegistryChangeListener"/>
+    </service>
+    <reference name="ItemRegistry" interface="org.eclipse.smarthome.core.items.ItemRegistry" cardinality="1..1" policy="static" bind="setItemRegistry" unbind="unsetItemRegistry"/>
+    <implementation class="org.eclipse.smarthome.core.semantics.internal.SemanticsMetadataProvider"/>
+</scr:component>

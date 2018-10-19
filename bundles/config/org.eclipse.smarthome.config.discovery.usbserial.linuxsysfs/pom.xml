@@ -15,4 +15,11 @@
 
   <name>Eclipse SmartHome Configuration USB-Serial Discovery for Linux using sysfs scanning</name>
 
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse.smarthome.config</groupId>
+      <artifactId>org.eclipse.smarthome.config.discovery.usbserial</artifactId>
+    </dependency>
+  </dependencies>
+
 </project>
