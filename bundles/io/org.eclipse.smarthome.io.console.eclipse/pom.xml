@@ -16,4 +16,16 @@
 
   <name>Eclipse SmartHome Console for OSGi framework Eclipse Equinox</name>
 
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse.smarthome.io</groupId>
+      <artifactId>org.eclipse.smarthome.io.console</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.platform</groupId>
+      <artifactId>org.eclipse.equinox.supplement</artifactId>
+      <version>1.8.100</version>
+    </dependency>
+  </dependencies>
+
 </project>

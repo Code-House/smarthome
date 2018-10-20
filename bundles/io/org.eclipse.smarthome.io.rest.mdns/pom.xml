@@ -14,4 +14,20 @@
   <packaging>bundle</packaging>
 
   <name>Eclipse SmartHome REST mDNS Announcer</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse.smarthome.io</groupId>
+      <artifactId>org.eclipse.smarthome.io.rest</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.smarthome.core</groupId>
+      <artifactId>org.eclipse.smarthome.core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.smarthome.config</groupId>
+      <artifactId>org.eclipse.smarthome.config.discovery.mdns</artifactId>
+    </dependency>
+  </dependencies>
+
 </project>

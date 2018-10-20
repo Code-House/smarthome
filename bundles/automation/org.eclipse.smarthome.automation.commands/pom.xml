@@ -15,4 +15,15 @@
 
   <name>Eclipse SmartHome Automation Commands</name>
 
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse.smarthome.automation</groupId>
+      <artifactId>org.eclipse.smarthome.automation.api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.smarthome.io</groupId>
+      <artifactId>org.eclipse.smarthome.io.console</artifactId>
+    </dependency>
+  </dependencies>
+
 </project>

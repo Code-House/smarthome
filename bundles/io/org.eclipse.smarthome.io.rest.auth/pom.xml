@@ -14,4 +14,16 @@
   <packaging>bundle</packaging>
 
   <name>Eclipse SmartHome Authentication Support for the REST Interface</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse.smarthome.core</groupId>
+      <artifactId>org.eclipse.smarthome.core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.eclipsesource.jaxrs</groupId>
+      <artifactId>publisher</artifactId>
+    </dependency>
+  </dependencies>
+
 </project>

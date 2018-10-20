@@ -47,6 +47,11 @@
             <artifactId>slf4j-simple</artifactId>
             <version>1.6.4</version>
           </dependency>
+          <dependency>
+            <groupId>org.eclipse.emf</groupId>
+            <artifactId>org.eclipse.emf.mwe2.launch</artifactId>
+            <version>${emf-mwe2.version}</version>
+          </dependency>
         </dependencies>
         <executions>
           <execution>

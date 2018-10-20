@@ -15,4 +15,27 @@
 
   <name>Eclipse SmartHome Automation REST API</name>
 
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse.smarthome.automation</groupId>
+      <artifactId>org.eclipse.smarthome.automation.api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.smarthome.automation</groupId>
+      <artifactId>org.eclipse.smarthome.automation.core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.smarthome.io</groupId>
+      <artifactId>org.eclipse.smarthome.io.rest</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.core</artifactId>
+    </dependency>
+  </dependencies>
+
 </project>

@@ -16,4 +16,11 @@
 
   <name>Eclipse SmartHome Console for OSGi Console RFC 147</name>
 
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse.smarthome.io</groupId>
+      <artifactId>org.eclipse.smarthome.io.console</artifactId>
+    </dependency>
+  </dependencies>
+
 </project>

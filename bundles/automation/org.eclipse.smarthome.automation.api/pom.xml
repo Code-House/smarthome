@@ -15,4 +15,15 @@
 
   <name>Eclipse SmartHome Automation API</name>
 
+  <properties>
+    <osgi.namespace>org.eclipse.smarthome.automation</osgi.namespace>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse.smarthome.config</groupId>
+      <artifactId>org.eclipse.smarthome.config.core</artifactId>
+    </dependency>
+  </dependencies>
+
 </project>

@@ -17,9 +17,7 @@
 
   <modules>
     <module>org.eclipse.smarthome.storage.json</module>
-    <module>org.eclipse.smarthome.storage.json.test</module>
     <module>org.eclipse.smarthome.storage.mapdb</module>
-    <module>org.eclipse.smarthome.storage.mapdb.test</module>
   </modules>
 
 </project>
