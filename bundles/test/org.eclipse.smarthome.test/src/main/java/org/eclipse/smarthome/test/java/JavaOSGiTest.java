@@ -58,8 +58,8 @@ public class JavaOSGiTest extends JavaTest {
 
     @Before
     public void bindBundleContext() throws Exception {
-        System.setProperty("ds.loglevel", "DEBUG");
-        System.setProperty("org.osgi.service.log.admin.loglevel", "DEBUG");
+//        System.setProperty("ds.loglevel", "DEBUG");
+//        System.setProperty("org.osgi.service.log.admin.loglevel", "DEBUG");
 
         // ensure felix-connect stores bundles in an unique target directory
         String uid = "" + System.currentTimeMillis();
