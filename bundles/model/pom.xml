@@ -18,7 +18,6 @@
   <modules>
     <module>org.eclipse.smarthome.model.lazygen</module>
     <module>org.eclipse.smarthome.model.core</module>
-    <module>org.eclipse.smarthome.model.core.test</module>
     <module>org.eclipse.smarthome.model.item</module>
     <!--<module>org.eclipse.smarthome.model.item.ide</module>-->
     <module>org.eclipse.smarthome.model.item.runtime</module>
@@ -28,7 +27,6 @@
     <module>org.eclipse.smarthome.model.persistence</module>
     <module>org.eclipse.smarthome.model.persistence.ide</module>
     <module>org.eclipse.smarthome.model.persistence.runtime</module>
-    <module>org.eclipse.smarthome.model.persistence.tests</module>
     <module>org.eclipse.smarthome.model.rule</module>
     <!--<module>org.eclipse.smarthome.model.rule.ide</module>-->
     <module>org.eclipse.smarthome.model.rule.runtime</module>
@@ -43,7 +41,6 @@
     <module>org.eclipse.smarthome.model.thing</module>
     <!--<module>org.eclipse.smarthome.model.thing.ide</module>-->
     <module>org.eclipse.smarthome.model.thing.runtime</module>
-    <module>org.eclipse.smarthome.model.thing.tests</module>
   </modules>
 
   <build>

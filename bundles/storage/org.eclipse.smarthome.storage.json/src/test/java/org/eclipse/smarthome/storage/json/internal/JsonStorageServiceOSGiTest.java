@@ -33,7 +33,6 @@ import org.junit.*;
  *
  * @author Simon Kaufmann - Initial implementation
  */
-@Ignore
 public class JsonStorageServiceOSGiTest extends JavaOSGiTest {
 
     private StorageService storageService;

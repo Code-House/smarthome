@@ -36,7 +36,6 @@ import org.junit.*;
  * @author Alex Tugarev - Added test for getStorage without classloader
  * @author Markus Rathgeb - Migrate Groovy tests to OSGi
  */
-@Ignore
 @NonNullByDefault
 public class StorageServiceOSGiTest extends JavaOSGiTest {
 

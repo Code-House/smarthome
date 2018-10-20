@@ -40,6 +40,15 @@
       <groupId>org.jupnp</groupId>
       <artifactId>org.jupnp</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>org.eclipse.smarthome.test</groupId>
+      <artifactId>org.eclipse.smarthome.test</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-all</artifactId>
+    </dependency>
   </dependencies>
 
 </project>

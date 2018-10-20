@@ -25,6 +25,10 @@
       <artifactId>xstream</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>org.eclipse.smarthome.test</groupId>
+      <artifactId>org.eclipse.smarthome.test</artifactId>
+    </dependency>
   </dependencies>
 
 </project>

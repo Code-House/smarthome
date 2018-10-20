@@ -43,6 +43,7 @@ import org.junit.Test;
 
 import com.google.common.collect.Lists;
 
+
 public class ScriptEngineOSGiTest extends JavaOSGiTest {
 
     private static final String ITEM_NAME = "Switch1";

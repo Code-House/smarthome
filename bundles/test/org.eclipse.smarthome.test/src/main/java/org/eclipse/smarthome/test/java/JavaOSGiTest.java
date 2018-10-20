@@ -15,13 +15,16 @@ package org.eclipse.smarthome.test.java;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
-import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.File;
+import java.util.*;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.function.Predicate;
 
+import org.apache.felix.connect.PojoServiceRegistryFactoryImpl;
+import org.apache.felix.connect.launch.BundleDescriptor;
+import org.apache.felix.connect.launch.ClasspathScanner;
+import org.apache.felix.connect.launch.PojoServiceRegistry;
+import org.apache.felix.connect.launch.PojoServiceRegistryFactory;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.smarthome.test.internal.java.MissingServiceAnalyzer;
@@ -35,6 +38,8 @@ import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.ServiceRegistration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * {@link JavaOSGiTest} is an abstract base class for OSGi based tests. It provides convenience methods to register and
@@ -47,13 +52,74 @@ import org.osgi.framework.ServiceRegistration;
 @NonNullByDefault
 public class JavaOSGiTest extends JavaTest {
 
+    private final Logger logger = LoggerFactory.getLogger(JavaOSGiTest.class);
     private final Map<String, List<ServiceRegistration<?>>> registeredServices = new HashMap<>();
     protected @NonNullByDefault({}) BundleContext bundleContext;
 
     @Before
-    public void bindBundleContext() {
-        bundleContext = initBundleContext();
+    public void bindBundleContext() throws Exception {
+        System.setProperty("ds.loglevel", "DEBUG");
+        System.setProperty("org.osgi.service.log.admin.loglevel", "DEBUG");
+
+        // ensure felix-connect stores bundles in an unique target directory
+        String uid = "" + System.currentTimeMillis();
+        String tempDir = "target/bundles/" + uid;
+        System.setProperty("org.osgi.framework.storage", tempDir);
+        createDirectory(tempDir);
+
+        // use another directory for the jar of the bundle as it cannot be in the same directory
+        // as it has a file lock during running the tests which will cause the temp dir to not be
+        // fully deleted between tests
+        createDirectory("target/test-bundles");
+
+        List<BundleDescriptor> bundles = new LinkedList<>();
+
+        Queue<BundleDescriptor> bundleDescriptors = getBundleDescriptors("(&(Bundle-SymbolicName=*)(!(Bundle-SymbolicName=org.osgi.*)))", getClass().getClassLoader());
+
+        // get the bundles
+        bundles.addAll(bundleDescriptors);
+
+        if (logger.isDebugEnabled()) {
+            for (int i = 0; i < bundles.size(); i++) {
+                BundleDescriptor desc = bundles.get(i);
+                logger.debug("Bundle #{} -> {}", i, desc);
+            }
+        }
+
+        // setup felix-connect to use our bundles
+        Map<String, Object> config = new HashMap<>();
+        config.put(PojoServiceRegistryFactory.BUNDLE_DESCRIPTORS, bundles);
+
+        PojoServiceRegistry reg = new PojoServiceRegistryFactoryImpl().newPojoServiceRegistry(config);
+        bundleContext = reg.getBundleContext();
+
         assertThat(bundleContext, is(notNullValue()));
+    }
+
+    /**
+     * Gets list of bundle descriptors.
+     * @param bundleFilter Filter expression for OSGI bundles.
+     *
+     * @return List pointers to OSGi bundles.
+     * @throws Exception If looking up the bundles fails.
+     */
+    private static Queue<BundleDescriptor> getBundleDescriptors(final String bundleFilter, ClassLoader loader) throws Exception {
+        List<BundleDescriptor> descriptors = new ClasspathScanner().scanForBundles(bundleFilter, loader);
+
+        Deque<BundleDescriptor> ordered = new ArrayDeque<>(descriptors.size());
+        for (BundleDescriptor descriptor : descriptors) {
+            if ("org.apache.felix.scr".equals(descriptor.getHeaders().get("Bundle-SymbolicName"))) {
+                ordered.addFirst(descriptor);
+            } else {
+                ordered.add(descriptor);
+            }
+        }
+
+        return ordered;
+    }
+
+    private void createDirectory(String directory) {
+        new File(directory).mkdirs();
     }
 
     /**

@@ -24,6 +24,15 @@
       <groupId>org.eclipse.smarthome.core</groupId>
       <artifactId>org.eclipse.smarthome.core.thing</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>org.eclipse.smarthome.test</groupId>
+      <artifactId>org.eclipse.smarthome.test</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-all</artifactId>
+    </dependency>
   </dependencies>
 
 </project>
