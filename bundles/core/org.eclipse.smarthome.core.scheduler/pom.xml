@@ -16,7 +16,8 @@
   <name>Eclipse SmartHome Core Scheduler Service</name>
 
   <properties>
-
+    <osgi.embed>*;groupId=org.quartz-scheduler</osgi.embed>
+    <osgi.export>org.quartz.*</osgi.export>
   </properties>
 
   <dependencies>

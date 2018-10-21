@@ -28,17 +28,4 @@
     <module>org.eclipse.smarthome.config.xml</module>
   </modules>
 
-  <profiles>
-    <profile>
-      <activation>
-        <os>
-          <family>unix</family>
-        </os>
-      </activation>
-      <modules>
-        <module>org.eclipse.smarthome.config.discovery.usbserial.linuxsysfs.test</module>
-      </modules>
-    </profile>
-  </profiles>
-
 </project>

@@ -20,6 +20,22 @@
       <groupId>org.eclipse.smarthome.config</groupId>
       <artifactId>org.eclipse.smarthome.config.discovery.usbserial</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>org.eclipse.smarthome.test</groupId>
+      <artifactId>org.eclipse.smarthome.test</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-all</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.smarthome.config</groupId>
+      <artifactId>org.eclipse.smarthome.config.discovery.usbserial</artifactId>
+      <version>${project.version}</version>
+      <classifier>tests</classifier>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
 </project>
