@@ -24,6 +24,21 @@
       <groupId>org.eclipse.smarthome.core</groupId>
       <artifactId>org.eclipse.smarthome.core.scheduler</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>org.eclipse.smarthome.automation</groupId>
+      <artifactId>org.eclipse.smarthome.automation.core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.smarthome.automation</groupId>
+      <artifactId>org.eclipse.smarthome.automation.module.core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.smarthome.test</groupId>
+      <artifactId>org.eclipse.smarthome.test</artifactId>
+    </dependency>
   </dependencies>
 
 </project>

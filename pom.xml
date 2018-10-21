@@ -235,6 +235,11 @@
       </dependency>
       <dependency>
         <groupId>org.eclipse.smarthome.automation</groupId>
+        <artifactId>org.eclipse.smarthome.automation.module.core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.smarthome.automation</groupId>
         <artifactId>org.eclipse.smarthome.automation.module.media</artifactId>
         <version>${project.version}</version>
       </dependency>
